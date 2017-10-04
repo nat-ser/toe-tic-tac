@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
-require "./environment"
+Dir["./lib/**/*.rb"].each { |f| require f }
 
 puts 'running'
+
+CLI.run
+
