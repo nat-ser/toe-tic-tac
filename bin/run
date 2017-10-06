@@ -3,5 +3,6 @@
 Dir["./lib/**/*.rb"].each { |f| require f }
 
 puts 'running'
-first_game = Game.new(player: "Bob", computer: "burger")
-puts first_game.display_board
+
+first_game = Game.new(human_name: "Bob", computer_name: "burger")
+first_game.play
