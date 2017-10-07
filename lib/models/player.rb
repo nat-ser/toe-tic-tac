@@ -11,13 +11,8 @@ class Player
   end
 end
 
-
-
 class Computer < Player
   attr_accessor :sign
-
-  def complement_player_choice
-  end
 
   def move
     random_index = board.free_squares[rand(board.free_squares.length)]
@@ -25,8 +20,6 @@ class Computer < Player
     populate_square(square_name: square_name, sign: sign)
   end
 end
-
-
 
 class Human < Player
   attr_reader :player_name, :sign

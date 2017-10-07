@@ -6,7 +6,6 @@
 require 'pry'
 
 class CLI
-
   def self.run
     greet_player
     give_directions
@@ -81,6 +80,4 @@ class CLI
 
   def validate_input
   end
-
-  # TODO add some fun custom methods for interaction
 end

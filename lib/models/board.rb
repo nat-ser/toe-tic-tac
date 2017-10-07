@@ -7,6 +7,4 @@ class Board
     @free_squares = squares.dup
     @squares = squares
   end
-
-
 end
