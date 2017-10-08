@@ -15,12 +15,12 @@ class CLI
   end
 
   def self.play(human, computer)
-    game = Game.new(human, computer)
+    game = Game.new(human: human, computer: computer)
     announce_first_player(game.current_player)
 
     display_board(game.board)
-    until game.draw?
-      game.switch_turn
+    while
+      game.turn
       display_board(game.board)
     end
   end
@@ -78,6 +78,7 @@ class CLI
       puts "X OR O"
       sign = gets.chomp
     end
+    sign
   end
 
   def self.ask_human_name
