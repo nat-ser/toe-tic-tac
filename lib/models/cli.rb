@@ -23,6 +23,7 @@ class CLI
       game.turn
       display_board(game.board)
     end
+    display_board(game.board)
   end
 
   def self.valid_coordinate_map

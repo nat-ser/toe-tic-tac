@@ -1,5 +1,8 @@
 class Player
-  attr_accessor :board
+  attr_accessor :board, :taken_squares
+  def initialize
+    @taken_squares = []
+  end
 
   def update_free_squares(square_name)
     board.free_squares.delete(square_name)
@@ -9,6 +12,7 @@ class Player
     update_free_squares(square_name)
     board.squares[square_name] = sign
   end
+
 end
 
 class Computer < Player
@@ -18,6 +22,7 @@ class Computer < Player
     random_index = board.free_squares[rand(board.free_squares.length)]
     square_name = board.squares[random_index]
     populate_square(square_name: square_name, sign: sign)
+    taken_squares << square_name
   end
 end
 
@@ -25,11 +30,13 @@ class Human < Player
   attr_reader :player_name, :sign
 
   def initialize(player_name:, sign:)
+    @taken_squares = []
     @player_name = player_name
     @sign = sign
   end
 
   def move(square_name)
     populate_square(square_name: square_name, sign: sign)
+    taken_squares << square_name
   end
 end
