@@ -1,42 +1,37 @@
 class Player
-  attr_accessor :board, :taken_squares
+  attr_accessor :sign, :board, :player_squares
+
   def initialize
-    @taken_squares = []
+    @player_squares = []
   end
 
-  def update_free_squares(square_name)
-    board.free_squares.delete(square_name)
+  def populate_square(square:, sign:)
+    board.update_free_squares(square)
+    board.squares[square] = sign
   end
 
-  def populate_square(square_name:, sign:)
-    update_free_squares(square_name)
-    board.squares[square_name] = sign
+  def move_to(square)
+    populate_square(square: square, sign: sign)
+    player_squares << square
   end
 
+  def take_turn(game)
+    square = move
+    move_to(square)
+    game.switch_turn
+  end
 end
 
 class Computer < Player
-  attr_accessor :sign
-
   def move
-    random_index = board.free_squares[rand(board.free_squares.length)]
-    square_name = board.squares[random_index]
-    populate_square(square_name: square_name, sign: sign)
-    taken_squares << square_name
+    puts "computer's move"
+    random_index = board.free_squares[rand(board.free_squares.length - 1)]
+    board.squares[random_index]
   end
 end
 
 class Human < Player
-  attr_reader :player_name, :sign
-
-  def initialize(player_name:, sign:)
-    @taken_squares = []
-    @player_name = player_name
-    @sign = sign
-  end
-
-  def move(square_name)
-    populate_square(square_name: square_name, sign: sign)
-    taken_squares << square_name
+  def move
+    CLI.ask_where_move(board.free_squares)
   end
 end
