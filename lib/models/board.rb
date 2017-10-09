@@ -1,10 +1,15 @@
 class Board
   attr_accessor :squares
-  attr_reader :free_squares
+  attr_reader :free_squares, :dimesion
 
-# initializing for now in case the board changes (more squares)
-  def initialize(squares)
+# to modify board size - would initialize board with a diff size
+  def initialize
+    @squares = (0..8).to_a
     @free_squares = squares.dup
-    @squares = squares
+    @dimesion = Math.sqrt(@squares.length).to_i
+  end
+
+  def update_free_squares(square)
+    free_squares.delete(square)
   end
 end
