@@ -7,15 +7,12 @@ class Game
     @human = human
     @computer = computer
     @board = board
-
     @human.board = board
     @computer.board = board
-
     @current_player = (rand(0..1) == 1 ? human : computer)
   end
 
   def play
-    # binding.pry
     current_player.take_turn(self)
     CLI.display_board(board)
     if win_or_tie? == :win
@@ -32,6 +29,5 @@ class Game
 
   def switch_turn
     @current_player = (@current_player == @human ? @computer : @human)
-    play
   end
 end

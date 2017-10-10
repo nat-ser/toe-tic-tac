@@ -9,7 +9,7 @@ module WinCheckable
 
   def wins
     @wins ||= begin
-      (horizontal_win_combinations + vertical_win_combinations + diagonal_win_combinations)
+      horizontal_win_combinations + vertical_win_combinations + diagonal_win_combinations
     end
   end
 
@@ -47,8 +47,8 @@ module WinCheckable
   end
 
   def idx_multiple_of_dimension?(idx)
-      square_count = idx + 1
-      (square_count % board.dimension == 0)
+    square_count = idx + 1
+    (square_count % board.dimension == 0)
   end
 
   def diagonal_win_combinations

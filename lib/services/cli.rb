@@ -4,13 +4,10 @@ class CLI
   class << self
     def run
       introduction
-
       human, computer, board = Human.new, Computer.new, Board.new
       game = Game.new(human: human, computer: computer, board: board)
-
       set_player_signs(human: human, computer: computer)
       announce_random_first_player(game.current_player)
-
       game.play
     end
 
@@ -26,7 +23,6 @@ class CLI
 
     def display_board(board)
       formatted = board.squares.map { |square| square.class == Integer ? " " : square}
-
       puts " #{formatted[0]} | #{formatted[1]} | #{formatted[2]} "
       puts "------------"
       puts " #{formatted[3]} | #{formatted[4]} | #{formatted[5]} "
