@@ -18,7 +18,6 @@ class Player
   def take_turn(game)
     square = move
     move_to(square)
-    game.switch_turn
   end
 end
 

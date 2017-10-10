@@ -1,10 +1,6 @@
 #!/usr/bin/env ruby
 
-# Dir["./lib/**/*.rb"].each { |f| require f }
-Dir["./lib/models/*.rb"].each { |f| require f }
 Dir["./lib/services/*.rb"].each { |f| require f }
-
-puts 'running'
+Dir["./lib/models/*.rb"].each { |f| require f }
 
 CLI.run
-
