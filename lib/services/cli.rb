@@ -11,27 +11,17 @@ class CLI
       set_player_signs(human: human, computer: computer)
       announce_random_first_player(game.current_player)
 
-      play(game)
+      game.play
     end
 
     def ask_where_move(free_squares)
       puts "what's your move human?"
       square = key_to_square_map[gets.chomp.to_sym]
       until valid_square?(square) && empty_square?(square: square, free_squares: free_squares)
-        puts "please enter one of these: #{valid_coordinate_map.keys} in a free spot"
+        puts "please enter one of these: #{key_to_square_map.keys} in a free spot"
         square = key_to_square_map[gets.chomp.to_sym]
       end
       square
-    end
-
-    private
-
-    def play(game)
-      while
-        game.current_player.take_turn(game)
-        display_board(game.board)
-        return if WinChecker.win_or_tie?(game)
-      end
     end
 
     def display_board(board)
@@ -44,6 +34,20 @@ class CLI
       puts " #{formatted[6]} | #{formatted[7]} | #{formatted[8]} "
       puts " "
     end
+
+    def play_again?
+      puts "Do you want to play again? (y/n) >"
+      exit_choice = gets.chomp.downcase
+      if exit_choice == 'y'
+        CLI.run
+      elsif exit_choice == 'n'
+        exit!
+      else
+        play_again?
+      end
+    end
+
+    private
 
     def introduction
       puts "You are playing toe-tic-tac! Enter 'exit' at any time to quit the game"
@@ -99,5 +103,6 @@ class CLI
     def empty_square?(square:, free_squares:)
       free_squares.include?(square)
     end
+
   end
 end
