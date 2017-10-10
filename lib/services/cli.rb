@@ -14,10 +14,10 @@ class CLI
       game.play
     end
 
-    def ask_where_move(free_squares)
+    def prompt_human_to_move(board)
       puts "what's your move human?"
       square = key_to_square_map[gets.chomp.to_sym]
-      until valid_square?(square) && empty_square?(square: square, free_squares: free_squares)
+      until board.valid_input?(square)
         puts "please enter one of these: #{key_to_square_map.keys} in a free spot"
         square = key_to_square_map[gets.chomp.to_sym]
       end
@@ -95,14 +95,5 @@ class CLI
         z: 6, x: 7, c: 8,
       }
     end
-
-    def valid_square?(square)
-      (0..8).to_a.include?(square)
-    end
-
-    def empty_square?(square:, free_squares:)
-      free_squares.include?(square)
-    end
-
   end
 end

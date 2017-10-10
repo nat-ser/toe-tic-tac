@@ -31,6 +31,6 @@ end
 
 class Human < Player
   def move
-    CLI.ask_where_move(board.free_squares)
+    CLI.prompt_human_to_move(board)
   end
 end

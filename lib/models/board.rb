@@ -13,4 +13,16 @@ class Board
   def update_free_squares(square)
     free_squares.delete(square)
   end
+
+  def valid_input?(square)
+    valid_square?(square) && empty_square?(square)
+  end
+
+  def valid_square?(square)
+    squares.include?(square)
+  end
+
+  def empty_square?(square)
+    free_squares.include?(square)
+  end
 end
