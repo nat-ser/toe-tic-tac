@@ -11,4 +11,5 @@
 - make gem
 - AI
 - refactor victory conditions to make more readable
+- tests
 

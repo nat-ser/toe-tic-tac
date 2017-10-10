@@ -5,6 +5,13 @@ class Player
     @player_squares = []
   end
 
+  def take_turn(game)
+    square = move
+    move_to(square)
+  end
+
+  private
+
   def populate_square(square:, sign:)
     board.update_free_squares(square)
     board.squares[square] = sign
@@ -13,11 +20,6 @@ class Player
   def move_to(square)
     populate_square(square: square, sign: sign)
     player_squares << square
-  end
-
-  def take_turn(game)
-    square = move
-    move_to(square)
   end
 end
 

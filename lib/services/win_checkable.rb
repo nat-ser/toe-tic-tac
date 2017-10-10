@@ -7,11 +7,7 @@ module WinCheckable
     end
   end
 
-  def wins
-    @wins ||= begin
-      horizontal_win_combinations + vertical_win_combinations + diagonal_win_combinations
-    end
-  end
+  private
 
   def horizontal_win_combinations
     row_wins = []
@@ -68,6 +64,14 @@ module WinCheckable
       second_pointer += second_increment
     end
     diagonal_wins
+  end
+
+
+  # memoizing so victory conditions get calculated only the furst time they are called
+  def wins
+    @wins ||= begin
+      horizontal_win_combinations + vertical_win_combinations + diagonal_win_combinations
+    end
   end
 
   def victory?
